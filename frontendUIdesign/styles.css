@@ -1,0 +1,251 @@
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: left;
+
+  }
+
+  .container1 {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+   
+  }
+   
+  .rainbow-text {
+    font-size: 3em; 
+    text-align: center;
+    background: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent; 
+    display: inline-block;
+    text-align: center;
+  }
+
+  .container2 {
+    display: flex;
+    justify-content: last baseline; 
+     
+    .container-wrapper {
+        display: flex;
+      }
+      .container4, .container5 {
+        flex: 1;
+      }
+      .table-container {
+        flex: 1;
+      }
+      .container4 {
+        margin-right: 20px; /* Adjust the spacing between containers */
+      }
+  }
+  #output {
+   text-decoration: wavy;
+    font-size: 2em;
+    text-align: center;
+    background: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent; 
+    display: inline-block;
+    text-align: center;
+  }
+  body {
+    background-image: url("file:///C:/Users/PC/Documents/bck.jpg");
+    background-size: cover; /* This ensures the image covers the entire background */
+    background-repeat: repeat; /* This prevents the image from repeating */
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+
+
+
+.navbar-toggle {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 20px;
+}
+
+.line {
+  width: 25px;
+  height: 2px;
+  background-color: #36069c;
+}
+
+
+    
+  
+  
+  h1 {
+    color: #f3ef0a;
+    text-decoration: double;
+    justify-content: center;
+    position: relative;
+    top: 50px;
+    left: 50px;
+    background-color: #fff;
+    text-align: center;
+  }
+  
+  .markets, .trade-types {
+    margin-bottom: 20px;
+  }
+  
+  .market-button, .trade-button {
+    padding: 10px 20px;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .market-button {
+    background-color: #3498db;
+    color: #fff;
+  }
+  
+  .trade-button {
+    background-color: #2ecc71;
+    color: #fff;
+  }
+  .market-button,
+.trade-button {
+ 
+  color: #fff;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.market-button:hover,
+.trade-button:hover {
+  background-color: #e74c3c; 
+  transform: rotate(5deg); 
+}
+
+  
+  #output {
+    margin-top: 20px;
+    font-weight: bold;
+  }
+  /* Style the button */
+#signup-btn {
+  background-color: deepskyblue; /* Deep blue color */
+  color: white;
+  border: none;
+  padding: 15px 30px; /* Small size */
+  border-radius: 3px;
+  position: fixed;
+  top: 30px; /* Position at top right corner */
+  right: 30px;
+  cursor: pointer;
+  border-radius: 10px;
+  border-style: double;
+  border-color: #000000;
+  font-size: larger;
+}
+
+/* Hover effect */
+#signup-btn:hover {
+  background-color: rgb(255, 30, 30); /* Lighter blue on hover */
+}
+* {
+  padding:0;
+  margin:0;
+  box-sizing:border-box;
+}
+.flex{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+body1 {
+  height: 100vh;
+  background-color: #fff;
+
+}
+.box {
+  width: 200px;
+  height:200px;
+  position: relative;
+  list-style:none;
+
+}
+.plus {
+  position: absolute;
+  color: #000000;
+  font-size: 40px;
+  z-index: 100;
+  height:fit-content;
+  transition:1s;
+  cursor:pointer;
+
+}
+li {
+  position: absolute;
+  transition: 1s;
+
+}
+a{
+  color: transparent;
+  font-size: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 1s;
+
+}
+.active .plus {
+  transform: rotate(315eg);
+
+}
+.active li{
+  transform: rotate(calc(var(--d)*45deg))
+  translateX(100px);
+  
+}
+.active a{
+  color: var(--clr);
+transform: rotate(calc(var(--d)* -45deg));
+position: relative;
+}
+a::before {
+  content: "";
+  width: 20px;
+  height: 2px;
+  background-color: var(--clr);
+  position: absolute;
+transform: rotate(calc(var(--d) *45deg))
+translateY(28px);
+transition: transform 0.5s,
+height 0.5s,
+width 0.5s;
+transition-delay:1s,1.5s,1.5s ;
+}
+.active a::before{
+  transform: rotate(calc(var(--d)*45deg))
+  translateY(0px);
+  width: calc(100% + 15px);
+  height: calc(100% + 15px);
+  background-color: transparent;
+  border:2px solid var(--clr);
+
+}
+.active a:hover::before{
+  background-color: var(--clr);
+  box-shadow: 0 0 10px var(--clr),
+  0 0 30px var(--clr),
+  0 0 50px var(--clr);
+
+  
+}
+.active a:hover {
+  color: #000000;
+  
+}

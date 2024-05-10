@@ -1,0 +1,119 @@
+* {
+    padding:0;
+    margin:0;
+    box-sizing:border-box;
+  }
+  .flex{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
+  }
+  body1 {
+    height: 100vh;
+    background-color: #fff;
+  
+  }
+  .box {
+    width: 200px;
+    height:200px;
+    position: relative;
+    list-style:none;
+  
+  }
+  .plus {
+    position: absolute;
+    color: #000000;
+    font-size: 40px;
+    z-index: 100;
+    height:fit-content;
+    transition:1s;
+    cursor:pointer;
+  
+  }
+  li {
+    position: absolute;
+    transition: 1s;
+  
+  }
+  a{
+    color: transparent;
+    font-size: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 1s;
+  
+  }
+  .active .plus {
+    transform: rotate(315eg);
+  
+  }
+  .active li{
+    transform: rotate(calc(var(--d)*45deg))
+    translateX(100px);
+    
+  }
+  .active a{
+    color: var(--clr);
+  transform: rotate(calc(var(--d)* -45deg));
+  position: relative;
+  }
+  a::before {
+    content: "";
+    width: 20px;
+    height: 2px;
+    background-color: var(--clr);
+    position: absolute;
+  transform: rotate(calc(var(--d) *45deg))
+  translateY(28px);
+  transition: transform 0.5s,
+  height 0.5s,
+  width 0.5s;
+  transition-delay:1s,1.5s,1.5s ;
+  }
+  .active a::before{
+    transform: rotate(calc(var(--d)*45deg))
+    translateY(0px);
+    width: calc(100% + 15px);
+    height: calc(100% + 15px);
+    background-color: transparent;
+    border:2px solid var(--clr);
+  
+  }
+  .active a:hover::before{
+    background-color: var(--clr);
+    box-shadow: 0 0 10px var(--clr),
+    0 0 30px var(--clr),
+    0 0 50px var(--clr);
+  
+    
+  }
+  .active a:hover {
+    color: #000000;
+    
+  }
+  :root {
+    --d: 1; 
+    --clr: #000; 
+  }
+  
+  
+  
+  .active li {
+    transform: rotate(calc(var(--d) * 45deg)) translateX(100px); /* Added a semicolon here */
+  }
+  
+  a::before {
+    content: "";
+    width: 20px;
+    height: 2px;
+    background-color: var(--clr);
+    position: absolute;
+    transform: rotate(calc(var(--d) * 45deg)) translateY(28px); /* Added a semicolon here */
+    transition: transform 0.5s, height 0.5s, width 0.5s; /* Added a comma here */
+    transition-delay: 1s, 1.5s, 1.5s;
+  }
+  
+  
+  

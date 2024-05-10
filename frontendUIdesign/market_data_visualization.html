@@ -1,0 +1,361 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BinGo Analysis Deriv Tool</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <button id="signup-btn">Sign Up/Sign In</button>
+
+  <div class="container">
+    <div class="rainbow-text">BinGo Analysis Deriv Tool</div>
+    <div class="markets">
+      <h2>Markets</h2>
+      <button class="market-button" id="market-10">Volatility market-10</button>
+      <button class="market-button" id="market-10s">Volatility market-10s</button>
+      <button class="market-button" id="market-25">Volatility market-25</button>
+      <button class="market-button" id="market-25s">Volatility market-25s</button>
+      <button class="market-button" id="market-50">Volatility market-50</button>
+      <button class="market-button" id="market-50s">Volatility market-50s</button>
+      <button class="market-button" id="market-75">Volatility market-75</button>
+      <button class="market-button" id="market-75s">Volatility market-75s</button>
+      <button class="market-button" id="market-100">Volatility market-100</button>
+      <button class="market-button" id="market-100s">Volatility market-100s</button>
+    </div>
+    <div class="trade-types">
+      <h2>Trade Types</h2>
+      <button class="trade-button" data-market="10" data-type="accumulator">Accumulators</button>
+      <button class="trade-button" data-market="10" data-type="ups-downs">Ups & Downs</button>
+      <button class="trade-button" data-market="10" data-type="over-under">Over & Under</button>
+      <button class="trade-button" data-market="10" data-type="even-odd">Even & Odd</button>
+      <button class="trade-button" data-market="10" data-type="matches-differs">Matches & Differs</button>
+      <button class="trade-button" data-market="10" data-type="higher and lowers">higher and lowers</button>
+      <button class="trade-button" data-market="10" data-type="Rise and fall">Rise and fall</button>
+      
+    </div>
+    <div id="output"></div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <div class ="container1">
+  <div class="rainbow-text">BinGo<br>Analysis Deriv Tool</div>
+    </div>
+  <title>BinGo Analysis Deriv Tool</title>
+  <link rel="stylesheet" href="styles.css">
+  <h1>BinGo Analysis Deriv Tool</h1>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="navbar-toggle" onclick="toggleMenu()">
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+    </div>
+    <ul class="navbar-menu" id="menu">
+        <li><a href="#" onclick="showMarket('market-10')">Volatility market-10</a></li>
+        <li><a href="#" onclick="showMarket('market-10s')">Volatility market-10s</a></li>
+        <li><a href="#" onclick="showMarket('market-25')">Volatility market-25</a></li>
+        <li><a href="#" onclick="showMarket('market-25s')">Volatility market-25s</a></li>
+        <li><a href="#" onclick="showMarket('market-50')">Volatility market-50</a></li>
+        <li><a href="#" onclick="showMarket('market-50s')">Volatility market-50s</a></li>
+        <li><a href="#" onclick="showMarket('market-75s')">Volatility market-75s</a></li>
+        <li><a href="#" onclick="showMarket('market-75')">Volatility market-75</a></li>
+        <li><a href="#" onclick="showMarket('market-100s')">Volatility market-100s</a></li>
+        <li><a href="#" onclick="showMarket('market-100')">Volatility market-100</a></li>
+    </ul>
+</nav>
+
+
+  <div class="container4-wrapper">
+    <div class="container5">
+  <div class="container">
+    <div class="container2">
+      <div id="output">your</div>
+    </div>
+    
+    <div id="output"></div>
+    <!-- HTML -->
+<div id="data-container"></div>
+
+    <div class="markets">
+      <h2>Markets</h2>
+      <button class="market-button" id=" volatility market-10">Volatility market-10</button>
+      <div class="trade-types">
+        <h2>Trade Types</h2>
+        
+        <button class="trade-button" id="accumulator">Accumulators</button>
+        <div class="types" >
+          
+  
+        </div>
+        <h3>Ups & Downs</h3>
+        <div class="type">
+          <button class="trade-button" id="rise/fall">rise/fall</button>
+          <button class="trade-button" id="higher/lower">higher/lowers</button>
+        </div>
+        <h3>Digits</h3>
+        <div class="type">
+          <button class="trade-button" id="matches/differs">matches/differs</button>
+          <button class="trade-button" id="Even/Odd">Even/Odd</button>
+          <button class="trade-button" id="Over/under">Over/Under</button>
+      </div>
+      <div class="container2">
+        <div id="output">your</div>
+      </div>
+      
+      <div id="output"></div>
+    </div>
+      <button class="market-button" id="market-10s">Volatility market-10s</button>
+      <div class="trade-types">
+        <h2>Trade Types</h2>
+       
+        <button class="trade-button" id="accumulator">Accumulators</button>
+        <div class="types" >
+         
+  
+        </div>
+        <h3>Ups & Downs</h3>
+        <div class="type">
+          <button class="trade-button" id="rise/fall">rise/fall</button>
+          <button class="trade-button" id="higher/lower">higher/lowers</button>
+        </div>
+        <h3>Digits</h3>
+        <div class="type">
+          <button class="trade-button" id="matches/differs">matches/differs</button>
+          <button class="trade-button" id="Even/Odd">Even/Odd</button>
+          <button class="trade-button" id="Over/under">Over/Under</button>
+      </div>
+      <div class="container2">
+        <div id="output">your</div>
+      </div>
+      
+      <div id="output"></div>
+    </div>
+       <button class="market-button" id="market-25">Volatility market-25</button>
+       <div class="trade-types">
+        <h2>Trade Types</h2>
+        
+        <button class="trade-button" id="accumulator">Accumulators</button>
+        <div class="types" >
+          
+  
+        </div>
+        <h3>Ups & Downs</h3>
+        <div class="type">
+          <button class="trade-button" id="rise/fall">rise/fall</button>
+          <button class="trade-button" id="higher/lower">higher/lowers</button>
+        </div>
+        <h3>Digits</h3>
+        <div class="type">
+          <button class="trade-button" id="matches/differs">matches/differs</button>
+          <button class="trade-button" id="Even/Odd">Even/Odd</button>
+          <button class="trade-button" id="Over/under">Over/Under</button>
+      </div>
+      <div class="container2">
+        <div id="output">your</div>
+      </div>
+      
+      <div id="output"></div>
+    </div>
+        <button class="market-button" id="market-25s">Volatilty market-25s</button>
+        <div class="trade-types">
+            <h2>Trade Types</h2>
+            
+            <button class="trade-button" id="accumulator">Accumulators</button>
+            <div class="types" >
+             
+      
+            </div>
+            <h3>Ups & Downs</h3>
+            <div class="type">
+              <button class="trade-button" id="rise/fall">rise/fall</button>
+              <button class="trade-button" id="higher/lower">higher/lowers</button>
+            </div>
+            <h3>Digits</h3>
+            <div class="type">
+              <button class="trade-button" id="matches/differs">matches/differs</button>
+              <button class="trade-button" id="Even/Odd">Even/Odd</button>
+              <button class="trade-button" id="Over/under">Over/Under</button>
+          </div>
+          <div class="container2">
+            <div id="output">your</div>
+          </div>
+          
+          <div id="output"></div>
+        </div>
+         <button class="market-button" id="market-50s"> volatilitymarket-50s</button>
+         <div class="trade-types">
+            <h2>Trade Types</h2>
+            
+            <button class="trade-button" id="accumulator">Accumulators</button>
+            <div class="types" >
+           
+      
+            </div>
+            <h3>Ups & Downs</h3>
+            <div class="type">
+              <button class="trade-button" id="rise/fall">rise/fall</button>
+              <button class="trade-button" id="higher/lower">higher/lowers</button>
+            </div>
+            <h3>Digits</h3>
+            <div class="type">
+              <button class="trade-button" id="matches/differs">matches/differs</button>
+              <button class="trade-button" id="Even/Odd">Even/Odd</button>
+              <button class="trade-button" id="Over/under">Over/Under</button>
+          </div>
+          <div class="container2">
+            <div id="output">your</div>
+          </div>
+          
+          <div id="output"></div>
+        </div>
+          <button class="market-button" id="market-50">Volatility market-50</button>
+            <div class="trade-types">
+                <h2>Trade Types</h2>
+                
+                <button class="trade-button" id="accumulator">Accumulators</button>
+                <div class="types" >
+                
+        
+                </div>
+                <h3>Ups & Downs</h3>
+                <div class="type">
+                <button class="trade-button" id="rise/fall">rise/fall</button>
+                <button class="trade-button" id="higher/lower">higher/lowers</button>
+                </div>
+                <h3>Digits</h3>
+                <div class="type">
+                <button class="trade-button" id="matches/differs">matches/differs</button>
+                <button class="trade-button" id="Even/Odd">Even/Odd</button>
+                <button class="trade-button" id="Over/under">Over/Under</button>
+                <div class="container2">
+                  <div id="output">your</div>
+                </div>
+                
+           <button class="market-button" id="market-75s">Volatiliy market-75s</button>
+           <div class="trade-types">
+            <h2>Trade Types</h2>
+            
+            <button class="trade-button" id="accumulator">Accumulators</button>
+            <div class="types" >
+             
+      
+            </div>
+            <h3>Ups & Downs</h3>
+            <div class="type">
+              <button class="trade-button" id="rise/fall">rise/fall</button>
+              <button class="trade-button" id="higher/lower">higher/lowers</button>
+            </div>
+            <h3>Digits</h3>
+            <div class="type">
+              <button class="trade-button" id="matches/differs">matches/differs</button>
+              <button class="trade-button" id="Even/Odd">Even/Odd</button>
+              <button class="trade-button" id="Over/under">Over/Under</button>
+          </div>
+          <div class="container2">
+            <div id="output">your</div>
+          </div>
+          
+          <div id="output"></div>
+        </div>
+            <button class="market-button" id="market-75">Volatility market-75</button>
+            <div class="trade-types">
+                <h2>Trade Types</h2>
+               
+                <button class="trade-button" id="accumulator">Accumulators</button>
+                <div class="types" >
+                  
+                </div>
+                <h3>Ups & Downs</h3>
+                <div class="type">
+                  <button class="trade-button" id="rise/fall">rise/fall</button>
+                  <button class="trade-button" id="higher/lower">higher/lowers</button>
+                </div>
+                <h3>Digits</h3>
+                <div class="type">
+                  <button class="trade-button" id="matches/differs">matches/differs</button>
+                  <button class="trade-button" id="Even/Odd">Even/Odd</button>
+                  <button class="trade-button" id="Over/under">Over/Under</button>
+              </div>
+              <div class="container2">
+                <div id="output">your</div>
+              </div>
+              
+              <div id="output"></div>
+
+             <button class="market-button" id="market-100s">Volatility market-100s</button>
+             <div class="trade-types">
+                <h2>Trade Types</h2>
+                <button class="trade-button" id="accumulator">Accumulators</button>
+                <div class="types" >
+                  
+          
+                </div>
+                <h3>Ups & Downs</h3>
+                <div class="type">
+                  <button class="trade-button" id="rise/fall">rise/fall</button>
+                  <button class="trade-button" id="higher/lower">higher/lowers</button>
+                </div>
+                <h3>Digits</h3>
+                <div class="type">
+                  <button class="trade-button" id="matches/differs">matches/differs</button>
+                  <button class="trade-button" id="Even/Odd">Even/Odd</button>
+                  <button class="trade-button" id="Over/under">Over/Under</button>
+              </div>
+              <div class="container2">
+                <div id="output">your</div>
+              </div>
+              
+              <div id="output"></div>
+            </div>
+            
+      <button class="market-button" id="market-100">Volatility market-100</button>
+      <div class="trade-types">
+        <h2>Trade Types</h2>
+        <button class="trade-button" id="accumulator">Accumulators</button>
+        <div class="types" >
+         
+  
+        </div>
+        <h3>Ups & Downs</h3>
+        <div class="type">
+          <button class="trade-button" id="rise/fall">rise/fall</button>
+          <button class="trade-button" id="higher/lower">higher/lowers</button>
+        </div>
+        <h3>Digits</h3>
+        <div class="type">
+          <button class="trade-button" id="matches/differs">matches/differs</button>
+          <button class="trade-button" id="Even/Odd">Even/Odd</button>
+          <button class="trade-button" id="Over/under">Over/Under</button>
+          <div id="output"></div>
+      </div>
+      <div class="container2">
+        <div id="output">your</div>
+      </div>
+      
+      <div id="output"></div>
+    </div>
+      <!-- Add buttons for other markets -->
+    </div>
+    
+    <div id="output"></div>
+  </div>
+</div>
+
+  
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
+
