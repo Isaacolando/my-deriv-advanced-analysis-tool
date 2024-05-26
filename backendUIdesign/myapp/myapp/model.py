@@ -1,60 +1,44 @@
 
 from django.db import models
-from bokeh.plotting import figure, show
-from bokeh.io import output_notebook
 from django.db.models import Count
-import seaborn as sns
-import matplotlib.pyplot as plt
+from django.core.management.base import BaseCommand
+import json
+import pandas as pd
 import numpy as np
-import pandas as ps
+import matplotlib.pyplot as plt
+from collections import Counter
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import accuracy_score
 
+class Command(BaseCommand):
+    help = 'Analyzes Volatility market data from Deriv and provides trading signals'
 
+    def add_arguments(self, parser):
+        parser.add_argument('scraped_data_file', type=str, help='Path to the scraped data JSON file')
 
-class MarketData(models.Model):
-    category = models.CharField(max_length=100)
-    value = models.FloatField()
+    def handle(self, *args, **kwargs):
+        scraped_data_file = kwargs['scraped_data_file']
 
-# Query the database to retrieve data
-data = MarketData.objects.all()
+        # Read JSON data from file
+        with open(scraped_data_file, "r") as file:
+            json_data = json.load(file)
 
-# Extract categories and values
-categories = [entry.category for entry in data]
-values = [entry.value for entry in data]
+        # Convert JSON data to Pandas DataFrame
+        df = pd.DataFrame(json_data)
 
-# Create Bokeh figure
-p = figure(x_range=categories, title='Market Volatility', x_axis_label='Category', y_axis_label='Values')
+        # Ensure 'data_field' column exists
+        if 'data_field' not in df.columns:
+            self.stdout.write(self.style.ERROR("'data_field' column is missing in the provided data"))
+            return
 
-# Plot the bar graph
-p.vbar(x=categories, top=values, width=0.9)
+        # Perform data analysis and generate signals
+        analysis_result = self.perform_data_analysis(df)
 
-# Display the graph
-show(p)
-market = ['rise ', 'fall']
-# Function to generate dynamic data based on machine learning analysis
-def generate_data():
-    # Replace this with your machine learning analysis to get dynamic data
-    # For demonstration, let's generate random probabilities for 10 classes
-    probabilities = np.random.rand(10)
-    # Normalize probabilities to sum to 1
-    probabilities /= probabilities.sum()
-    # Scale probabilities to be out of 100 (percentage)
-    percentages = probabilities * 100
-    return percentages
+        # Perform machine learning training
+        model, accuracy = self.train_machine_learning_model(df)
 
-# Function to update the plot
-def update_plot():
-    # Clear the current plot
-    plt.clf()
-    # Generate new percentages based on machine learning analysis
-    percentages = generate_data()
-    # Plot the data
-    sns.barplot(x=range(len(percentages)), y=percentages)
-    # Annotate each bar with its percentage of occurrence
-    for i, percentage in enumerate(percentages):
-        plt.text(i, percentage, f'{percentage:.2f}%', ha='center', va='bottom')
-    # Show the plot
-    plt.show()
+        # Display analysis result and model accuracy
+        self.stdout.write(self.style.SUCCESS(f"Analysis Result:\n{analysis_result}"))
+        self.stdout.write(self.style.SUCCESS(f"Model Accuracy: {accuracy}"))
 
-# Continuously update the plot
-while True:
-    update_plot()

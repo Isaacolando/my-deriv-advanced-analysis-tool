@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Analysis Results</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> 
+     <script src="https://cdn.socket.io/4.0.0/socket.io.min.js"></script>
+</head>
+<body>
+    <canvas id="myChart" width="400" height="200"></canvas>
+    <script>
+        fetch('/api/analysis-results')
+            .then(response => response.json())
+            .then(data => {
+                const ctx = document.getElementById('myChart').getContext('2d');
+                const myChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Rise', 'Fall'],
+                        datasets: [{
+                            label: 'Percentage',
+                            data: [data.rise_percentage, data.fall_percentage],
+                            backgroundColor: ['green', 'red'],
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            });
+    
+        const socket = new WebSocket('ws://' + window.location.host + '/ws/analysis/');
+    
+        socket.onmessage = function(e) {
+            const data = JSON.parse(e.data);
+            // Update chart with new data
+        };
+    
+        // Optionally send messages to WebSocket
+        socket.onopen = function(e) {
+            socket.send(JSON.stringify({'message': 'request_analysis'}));
+        };
+
+      
+
+    var socket = io();
+
+    socket.on('message', function(data) {
+        // Update chart with new data
+    });
+
+    // Optionally send messages to WebSocket
+    socket.emit('message', {'message': 'request_analysis'});
+
+
+    </script>
+    
+</body>
+</html>

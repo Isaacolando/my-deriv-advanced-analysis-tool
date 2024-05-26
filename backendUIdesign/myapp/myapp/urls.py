@@ -22,6 +22,15 @@ urlpatterns = [
 ]
 
 
+# urls.py
+from django.urls import path
+from .views import get_analysis_results
+
+urlpatterns = [
+    path('api/analysis-results/', get_analysis_results, name='analysis-results'),
+]
+
+
 
 from django.urls import path
 from .views import market_data_visualization

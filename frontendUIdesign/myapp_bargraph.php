@@ -1,9 +1,10 @@
 <?php
 // Database connection parameters
 $servername = "localhost";
-$username = "your_username";
-$password = "your_password";
-$database = "your_database";
+$username = "wwedid";
+$password = "njugia";
+$database = "wwedid49";
+
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $database);
@@ -35,7 +36,7 @@ $conn->close();
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Bar Graph Example</title>
+    <title>Bar Graph</title>
     <!-- Include Chart.js library -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>

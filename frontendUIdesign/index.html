@@ -1,0 +1,294 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BinGo Analysis Deriv Tool</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  
+  <button id="signup-btn">Sign Up/Sign In</button>
+  
+  
+  
+  <div class="selected-info" id="selected-info">
+    <p><strong>Selected Market:</strong> <span id="selected-market">None</span></p>
+    <p><strong>Selected Trade Type:</strong> <span id="selected-trade-type">None</span></p>
+  </div>
+
+  <div class="container">
+    <div class="rainbow-text">BinGo Analysis Deriv Tool</div>
+    <div class="markets">
+      <h2>Markets</h2>
+      <button class="market-button" data-market="10">Volatility market-10</button>
+      <button class="market-button" data-market="10s">Volatility market-10s</button>
+      <button class="market-button" data-market="25">Volatility market-25</button>
+      <button class="market-button" data-market="25s">Volatility market-25s</button>
+      <button class="market-button" data-market="50">Volatility market-50</button>
+      <button class="market-button" data-market="50s">Volatility market-50s</button>
+      <button class="market-button" data-market="75">Volatility market-75</button>
+      <button class="market-button" data-market="75s">Volatility market-75s</button>
+      <button class="market-button" data-market="100">Volatility market-100</button>
+      <button class="market-button" data-market="100s">Volatility market-100s</button>
+    </div>
+    <div class="trade-types">
+      <h2>Trade Types</h2>
+      <button class="trade-button" data-type="accumulator">Accumulators</button>
+      <button class="trade-button" data-type="ups-downs">Ups & Downs</button>
+      <button class="trade-button" data-type="over-under">Over & Under</button>
+      <button class="trade-button" data-type="even-odd">Even & Odd</button>
+      <button class="trade-button" data-type="matches-differs">Matches & Differs</button>
+      <button class="trade-button" data-type="higher-lower">Higher & Lower</button>
+      <button class="trade-button" data-type="rise-fall">Rise & Fall</button>
+    </div>
+    <div id="chart-container">
+      <canvas id="chart"></canvas>
+    </div>
+  </div>
+
+  <script>
+    let selectedMarket = null;
+    let selectedTradeType = null;
+
+    async function fetchAnalysisResults(market, tradeType) {
+      const response = await fetch(`/api/analysis-results?market=${market}&trade_type=${tradeType}`);
+      return await response.json();
+    }
+
+    function renderChart(data) {
+      const ctx = document.getElementById('chart').getContext('2d');
+      new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: ['Rise', 'Fall'],
+          datasets: [{
+            label: 'Percentage',
+            data: [data.rise_percentage, data.fall_percentage],
+            backgroundColor: ['green', 'red']
+          }]
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true
+            }
+          }
+        }
+      });
+    }
+
+    function updateSelectedInfo() {
+      document.getElementById('selected-market').textContent = selectedMarket ? `Volatility market-${selectedMarket}` : 'None';
+      document.getElementById('selected-trade-type').textContent = selectedTradeType ? selectedTradeType.replace('-', ' & ') : 'None';
+    }
+
+    document.querySelectorAll('.market-button').forEach(button => {
+      button.addEventListener('click', () => {
+        selectedMarket = button.dataset.market;
+        document.querySelectorAll('.market-button').forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+        updateSelectedInfo();
+      });
+    });
+
+    document.querySelectorAll('.trade-button').forEach(button => {
+      button.addEventListener('click', async () => {
+        if (!selectedMarket) {
+          alert('Please select a market first.');
+          return;
+        }
+        selectedTradeType = button.dataset.type;
+        updateSelectedInfo();
+        const data = await fetchAnalysisResults(selectedMarket, selectedTradeType);
+        renderChart(data);
+      });
+    });
+    
+// Add click event listener to the button
+document.getElementById('signup-btn').addEventListener('click', function() {
+    // Redirect to the login page
+    window.location.href = 'log.html';
+  });
+  
+  </script>
+</body>
+</html>
+
+<!--
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BinGo Analysis Deriv Tool</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="styless.css">
+</head>
+<body>
+  <button id="signup-btn">Sign Up/Sign In</button>
+
+  <div class="selected-info" id="selected-info">
+    <p><strong>Selected Market:</strong> <span id="selected-market">None</span></p>
+    <p><strong>Selected Trade Type:</strong> <span id="selected-trade-type">None</span></p>
+  </div>
+
+  <div class="container">
+    <div class="rainbow-text">BinGo Analysis Deriv Tool</div>
+    <div class="markets">
+      <h2>Markets</h2>
+      <button class="market-button" data-market="10">Volatility market-10</button>
+      <button class="market-button" data-market="10s">Volatility market-10s</button>
+      <button class="market-button" data-market="25">Volatility market-25</button>
+      <button class="market-button" data-market="25s">Volatility market-25s</button>
+      <button class="market-button" data-market="50">Volatility market-50</button>
+      <button class="market-button" data-market="50s">Volatility market-50s</button>
+      <button class="market-button" data-market="75">Volatility market-75</button>
+      <button class="market-button" data-market="75s">Volatility market-75s</button>
+      <button class="market-button" data-market="100">Volatility market-100</button>
+      <button class="market-button" data-market="100s">Volatility market-100s</button>
+    </div>
+    <div class="trade-types">
+      <h2>Trade Types</h2>
+      <button class="trade-button" data-type="accumulator">Accumulators</button>
+      <button class="trade-button" data-type="ups-downs">Ups & Downs</button>
+      <button class="trade-button" data-type="over-under">Over & Under</button>
+      <button class="trade-button" data-type="even-odd">Even & Odd</button>
+      <button class="trade-button" data-type="matches-differs">Matches & Differs</button>
+      <button class="trade-button" data-type="higher-lower">Higher & Lower</button>
+      <button class="trade-button" data-type="rise-fall">Rise & Fall</button>
+    </div>
+    <div id="chart-container">
+      <canvas id="chart"></canvas>
+    </div>
+  </div>
+
+  <div class="modal" id="modal">
+    <div class="modal-content">
+      <div class="container" id="container">
+        <div class="form-container sign-up">
+          <form>
+            <h1>Create Account</h1>
+            <div class="social-icons">
+              <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
+              <a href="#" class="icon"><i class="fa-brands fa-facebook-f"></i></a>
+              <a href="#" class="icon"><i class="fa-brands fa-github"></i></a>
+              <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
+            </div>
+            <span>or use your email for registration</span>
+            <input type="text" placeholder="Name">
+            <input type="email" placeholder="Email">
+            <input type="password" placeholder="Password">
+            <button>Sign Up</button>
+          </form>
+        </div>
+        <div class="form-container sign-in">
+          <form>
+            <h1>Sign In</h1>
+            <div class="social-icons">
+              <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
+              <a href="#" class="icon"><i class="fa-brands fa-facebook-f"></i></a>
+              <a href="#" class="icon"><i class="fa-brands fa-github"></i></a>
+              <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
+            </div>
+            <span>or use your email for password</span>
+            <input type="email" placeholder="Email">
+            <input type="password" placeholder="Password">
+            <a href="#">Forget Your Password?</a>
+            <button>Sign In</button>
+          </form>
+        </div>
+        <div class="toggle-container">
+          <div class="toggle">
+            <div class="toggle-panel toggle-left">
+              <h1>Welcome Back!</h1>
+              <p>Enter your personal details to use all of the site's features</p>
+              <button class="hidden" id="login">Sign In</button>
+            </div>
+            <div class="toggle-panel toggle-right">
+              <h1>Hello, Friend!</h1>
+              <p>Register with your personal details to use all of the site's features</p>
+              <button class="hidden" id="register">Sign Up</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let selectedMarket = null;
+    let selectedTradeType = null;
+
+    async function fetchAnalysisResults(market, tradeType) {
+      const response = await fetch(`/api/analysis-results?market=${market}&trade_type=${tradeType}`);
+      return await response.json();
+    }
+
+    function renderChart(data) {
+      const ctx = document.getElementById('chart').getContext('2d');
+      new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: ['Rise', 'Fall'],
+          datasets: [{
+            label: 'Percentage',
+            data: [data.rise_percentage, data.fall_percentage],
+            backgroundColor: ['green', 'red']
+          }]
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true
+            }
+          }
+        }
+      });
+    }
+
+    function updateSelectedInfo() {
+      document.getElementById('selected-market').textContent = selectedMarket ? `Volatility market-${selectedMarket}` : 'None';
+      document.getElementById('selected-trade-type').textContent = selectedTradeType ? selectedTradeType.replace('-', ' & ') : 'None';
+    }
+
+    document.querySelectorAll('.market-button').forEach(button => {
+      button.addEventListener('click', () => {
+        selectedMarket = button.dataset.market;
+        document.querySelectorAll('.market-button').forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+        updateSelectedInfo();
+      });
+    });
+
+    document.querySelectorAll('.trade-button').forEach(button => {
+      button.addEventListener('click', async () => {
+        if (!selectedMarket) {
+          alert('Please select a market first.');
+          return;
+        }
+        selectedTradeType = button.dataset.type;
+        updateSelectedInfo();
+        const data = await fetchAnalysisResults(selectedMarket, selectedTradeType);
+        renderChart(data);
+      });
+    });
+
+    document.getElementById('signup-btn').addEventListener('click', () => {
+      document.getElementById('modal').style.display = 'block';
+    });
+
+    window.onclick = function(event) {
+      if (event.target == document.getElementById('modal')) {
+        document.getElementById('modal').style.display = 'none';
+      }
+    };
+  </script>
+</body>
+</html>
+
+-->
